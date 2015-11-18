@@ -1,0 +1,4 @@
+#start component
+START_ACTIVITY = 1
+SEND_BROADCAST = 2
+START_SERVICE = 3
