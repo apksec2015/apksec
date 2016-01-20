@@ -1,0 +1,22 @@
+/home/agent/jdiesel/gen/com/mwr/jdiesel/R.java \
+ : /home/agent/mwr-tls/res/values-v14/styles.xml \
+/home/agent/mwr-tls/res/values-v11/styles.xml \
+/home/agent/mwr-tls/res/drawable-mdpi/ic_launcher.png \
+/home/agent/mwr-tls/res/drawable-xhdpi/ic_launcher.png \
+/home/agent/mwr-tls/res/drawable-hdpi/ic_launcher.png \
+/home/agent/mwr-tls/res/values/strings.xml \
+/home/agent/mwr-tls/res/values/styles.xml \
+/home/agent/mwr-tls/bin/res/drawable-mdpi/ic_launcher.png \
+/home/agent/mwr-tls/bin/res/drawable-xhdpi/ic_launcher.png \
+/home/agent/mwr-tls/bin/res/drawable-hdpi/ic_launcher.png \
+/home/agent/jdiesel/res/values-v14/styles.xml \
+/home/agent/jdiesel/res/values-v11/styles.xml \
+/home/agent/jdiesel/res/drawable-mdpi/ic_launcher.png \
+/home/agent/jdiesel/res/drawable-xhdpi/ic_launcher.png \
+/home/agent/jdiesel/res/drawable-hdpi/ic_launcher.png \
+/home/agent/jdiesel/res/values/strings.xml \
+/home/agent/jdiesel/res/values/styles.xml \
+/home/agent/jdiesel/bin/res/drawable-mdpi/ic_launcher.png \
+/home/agent/jdiesel/bin/res/drawable-xhdpi/ic_launcher.png \
+/home/agent/jdiesel/bin/res/drawable-hdpi/ic_launcher.png \
+/home/agent/jdiesel/bin/AndroidManifest.xml \

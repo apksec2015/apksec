@@ -1,0 +1,56 @@
+# view AndroidManifest.xml #generated:18
+-keep class com.mwr.dz.activities.AboutActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:30
+-keep class com.mwr.dz.activities.EndpointActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:33
+-keep class com.mwr.dz.activities.EndpointSettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:22
+-keep class com.mwr.dz.activities.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:36
+-keep class com.mwr.dz.activities.ServerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:39
+-keep class com.mwr.dz.activities.SettingsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:43
+-keep class com.mwr.dz.receivers.Receiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:52
+-keep class com.mwr.dz.services.ClientService { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class com.mwr.dz.services.ServerService { <init>(...); }
+
+# view AndroidManifest.xml #generated:58
+-keep class com.mwr.dz.services.SessionService { <init>(...); }
+
+# view res/layout/activity_endpoint.xml #generated:31
+# view res/layout/activity_endpoint.xml #generated:38
+# view res/layout/activity_endpoint.xml #generated:45
+# view res/layout/activity_endpoint.xml #generated:52
+# view res/layout/activity_endpoint.xml #generated:59
+# view res/layout/activity_server.xml #generated:30
+# view res/layout/activity_server.xml #generated:37
+# view res/layout/activity_server.xml #generated:44
+# view res/layout/activity_server.xml #generated:51
+# view res/layout/activity_server.xml #generated:58
+-keep class com.mwr.dz.views.CheckListItemView { <init>(...); }
+
+# view res/layout/activity_endpoint.xml #generated:10
+# view res/layout/activity_server.xml #generated:10
+# view res/layout/list_view_row_endpoint.xml #generated:34
+# view res/layout/list_view_row_server.xml #generated:28
+-keep class com.mwr.dz.views.ConnectorStatusIndicator { <init>(...); }
+
+# view land/res/layout-land/activity_main.xml #generated:17
+# view res/layout/activity_main.xml #generated:17
+-keep class com.mwr.dz.views.EndpointListView { <init>(...); }
+
+# view land/res/layout-land/activity_main.xml #generated:24
+# view res/layout/activity_main.xml #generated:25
+-keep class com.mwr.dz.views.ServerListRowView { <init>(...); }
+

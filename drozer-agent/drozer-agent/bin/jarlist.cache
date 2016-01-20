@@ -1,0 +1,9 @@
+# cache for current jar dependency. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1452493710000 450512 d0203ba98f669b8272ee54f34861dadc7bae6e1d /home/agent/jdiesel/libs/protobuf-java-2.4.1.jar
+1452493692000 450512 d0203ba98f669b8272ee54f34861dadc7bae6e1d /home/agent/drozer-agent/libs/protobuf-java-2.4.1.jar
+1452493710000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/agent/jdiesel/libs/android-support-v4.jar
+1452493741000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/agent/mwr-tls/libs/android-support-v4.jar
+1452493724000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/agent/mwr-android/libs/android-support-v4.jar
+1452493692000 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f /home/agent/drozer-agent/libs/android-support-v4.jar

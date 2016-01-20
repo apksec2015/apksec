@@ -1,0 +1,19 @@
+/home/agent/drozer-agent/bin/agent-debug-unaligned.apk : \
+/home/agent/drozer-agent/bin/agent.ap_ \
+/home/agent/drozer-agent/bin/classes.dex \
+/home/agent/drozer-agent/src/com/mwr/dz/apksec/StartComponents.java.liqi.0 \
+/home/agent/drozer-agent/src/com/mwr/dz/apksec/StartComponents.javallf \
+/home/agent/drozer-agent/src/com/mwr/dz/apksec/StartComponents.javallf1 \
+/home/agent/drozer-agent/src/com/mwr/dz/apksec/StartComponents.java.liqi.1 \
+/home/agent/jdiesel/bin/classes.jar \
+/home/agent/mwr-tls/bin/classes.jar \
+/home/agent/mwr-android/bin/classes.jar \
+/home/agent/jdiesel/libs/protobuf-java-2.4.1.jar \
+/home/agent/jdiesel/libs/android-support-v4.jar \
+/home/agent/jdiesel/libs/arm64-v8a/libmstring.so \
+/home/agent/jdiesel/libs/mips64/libmstring.so \
+/home/agent/jdiesel/libs/mips/libmstring.so \
+/home/agent/jdiesel/libs/armeabi/libmstring.so \
+/home/agent/jdiesel/libs/x86/libmstring.so \
+/home/agent/jdiesel/libs/armeabi-v7a/libmstring.so \
+/home/agent/jdiesel/libs/x86_64/libmstring.so \
