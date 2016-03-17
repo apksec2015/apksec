@@ -40,6 +40,7 @@ class Detect(Module, common.Filters, common.PackageManager, common.IntentFilter)
             activites = self.__get_activities(package)
 
             self.stdout.write("activity detecting starts...\n")
+            activity_detect_result = {}#20160317
             count = 0
             for activity in activites:
                 count = count + 1
@@ -52,8 +53,13 @@ class Detect(Module, common.Filters, common.PackageManager, common.IntentFilter)
                 start_components.startcomponent(arguments.package, activity.name, START_ACTIVITY, self.getContext())
                 logs = read_shell(shell, 1)
                 logs = cutoff_system_print(logs)
+                activity_detect_result[activity.name] = logs#20160317
                 self.stdout.write("+++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (activity.name, logs))
                 self.stdout.flush() #added 20151116
+                
+            #20160317    
+            activity_detect_result = str(activity_detect_result)
+            #self.stdout.write(activity_detect_result)
                 
         else:
             self.stdout.write("package could not be None!\n")
