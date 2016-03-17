@@ -39,6 +39,7 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
             services = self.__get_services(package)
 
             count = 0
+            service_detect_result = {} #20160317
             self.stdout.write("service detecting starts...\n")
             for service in services:
                 count = count + 1
@@ -50,8 +51,13 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
                 start_components.startcomponent(arguments.package, service.name, START_SERVICE, self.getContext())
                 logs = read_shell(shell, 1)
                 logs = cutoff_system_print(logs)
+                service_detect_result[service.name] = logs #20160317
                 self.stdout.write("+++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (service.name, logs))
                 self.stdout.flush()
+                
+            #20160317
+            service_detect_result = str(service_detect_result)
+            #self.stdout.write(service_detect_result)
                 
         else:
             self.stdout.write("package could not be None\n'")
