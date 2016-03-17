@@ -40,6 +40,7 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
             receivers = self.__get_receivers(package)
 
             count = 0
+            broadcast_detect_result = {} #20160317
             self.stdout.write("broadcast detecting starts...\n")
             
             for receiver in receivers:
@@ -52,8 +53,13 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
                 start_components.startcomponent(arguments.package, receiver.name, SEND_BROADCAST, self.getContext())
                 logs = read_shell(shell, 1)
                 logs = cutoff_system_print(logs)
+                broadcast_detect_result[receiver.name] = logs #20160317
                 self.stdout.write("+++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (receiver.name, logs))
                 self.stdout.flush()
+            
+            #20160317    
+            broadcast_detect_result = str(broadcast_detect_result)
+            #self.stdout.write(broadcast_detect_result)
                 
         else:
             self.stdout.write("package could not be None\n'")
