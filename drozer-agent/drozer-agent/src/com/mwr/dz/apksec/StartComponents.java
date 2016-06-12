@@ -90,8 +90,8 @@ public class StartComponents {
 		intents[11].putExtra("putextra_parcelable_array", type_parcelable_array);
 		
 		// 12
-		TypeSerializable type_serializeble = new TypeSerializable();
-		intents[12].putExtra("putextra_serializeble", type_serializeble);
+		TypeSerializable type_serializable = new TypeSerializable();
+		intents[12].putExtra("putextra_serializeble", type_serializable);
 		
 		// 13
 		boolean type_boolean_array[] = new boolean[len_array];

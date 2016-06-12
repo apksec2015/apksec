@@ -1,17 +1,9 @@
 import time
 import string
 
-def init_logcat(shell):
-	shell.write("su\n")
-	shell.write("logcat -c")
-
 def read_shell(shell, waiting_time):
 	time.sleep(waiting_time)
 	return shell.read()
-
-def close_logcat(shell):
-	shell.write("logcat -c")
-	shell.close()
 
 # cutoff the system print '--------- beginning of /dev/log/main' && '--------- beginning of /dev/log/system'
 def cutoff_system_print(logs):

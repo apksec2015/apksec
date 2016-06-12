@@ -2,7 +2,7 @@ from pydiesel.reflection import ReflectionException
 from drozer.modules import Module, common
 from drozer.modules.common.package_manager import PackageManager
 from drozer import android
-from drozer.modules.apksec.logcat_logs import init_logcat, read_shell, close_logcat, cutoff_system_print
+from drozer.modules.apksec.logcat_logs import read_shell, cutoff_system_print
 from drozer.modules.apksec.config import START_SERVICE
 import os
 import sys
@@ -22,15 +22,14 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
         parser.add_argument("-a", "--package", default = None, help = "specify the package to inspect")
 
     def execute(self, arguments):
-        #self.stdout.write("Successfully relize a new module named 'apksec.service.detect'!\n")
-
         reload(sys)
         sys.setdefaultencoding('utf-8')
 
         shell = self.new("com.mwr.jdiesel.util.Shell")
-        init_logcat(shell)
-
+        shell.write("su\n")
         shell.write("logcat ContextImplcheckPermission:E IntentExtra:E AndroidRuntime:E *:S")
+        shell.write("logcat -d")
+        shell.write("logcat -c")
         logs = read_shell(shell, 1)
         #self.stdout.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!logs before detecting is...\n%s\n" % logs)
 
@@ -42,6 +41,9 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
             service_detect_result = {} #20160317
             self.stdout.write("service detecting starts...\n")
             for service in services:
+                shell.write("logcat ContextImplcheckPermission:E IntentExtra:E AndroidRuntime:E *:S")
+                logs = read_shell(shell, 1)        
+
                 count = count + 1
                 self.stdout.write("  service No.%d: %s\n" % (count, service.name))
 
@@ -49,11 +51,14 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
                 # Serializable added 20151113
                 start_components = self.new("com.mwr.dz.apksec.StartComponents")
                 start_components.startcomponent(arguments.package, service.name, START_SERVICE, self.getContext())
+
+                shell.write("logcat -d")
                 logs = read_shell(shell, 1)
                 logs = cutoff_system_print(logs)
                 service_detect_result[service.name] = logs #20160317
                 self.stdout.write("+++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (service.name, logs))
                 self.stdout.flush()
+                shell.write("logcat -c")
                 
             #20160317
             service_detect_result = str(service_detect_result)
@@ -61,12 +66,9 @@ class Detect(Module, common.Filters, common.PackageManager, common.Provider, com
                 
         else:
             self.stdout.write("package could not be None\n'")
-        
-        #logs = read_shell(shell, 1)
-        #self.stdout.write("~~~~~~~~~~~~~~~~~~~~~LOGS after detecting~~~~~~~~~~~~~~~~~~~~\n%s" % logs)
 
-        close_logcat(shell)
-        #self.stdout.write("~~~~~~~~~~~~~~~~~~~~~logcat Finished!!!!\n")
+        shell.close()
+
 
     def __get_services(self, package):
         exported_services = self.match_filter(package.services, "exported", True)

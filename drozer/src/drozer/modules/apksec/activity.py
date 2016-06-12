@@ -2,7 +2,7 @@ from pydiesel.reflection import ReflectionException
 from drozer.modules import Module, common
 from drozer.modules.common.package_manager import PackageManager
 from drozer import android
-from drozer.modules.apksec.logcat_logs import init_logcat, read_shell, close_logcat, cutoff_system_print
+from drozer.modules.apksec.logcat_logs import read_shell, cutoff_system_print
 from drozer.modules.apksec.config import START_ACTIVITY
 import os
 import sys
@@ -24,14 +24,14 @@ class Detect(Module, common.Filters, common.PackageManager, common.IntentFilter)
         parser.add_argument("-a", "--package", default = None, help = "specify the package to inspect")
 
     def execute(self, arguments):
-        #self.stdout.write("Successfully relize a new module named 'apksec.activity.detect'\n")
-
         reload(sys)
         sys.setdefaultencoding("utf-8")
 
         shell = self.new("com.mwr.jdiesel.util.Shell")
-        init_logcat(shell)
+        shell.write("su\n") # added 20160612
         shell.write("logcat ContextImplcheckPermission:E IntentExtra:E AndroidRuntime:E *:S")
+        shell.write("logcat -d")#20160607
+        shell.write("logcat -c")#20160612
         logs = read_shell(shell, 1)
         #self.stdout.write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!logs before detecting is...\n%s\n" % logs)
 
@@ -43,19 +43,24 @@ class Detect(Module, common.Filters, common.PackageManager, common.IntentFilter)
             activity_detect_result = {}#20160317
             count = 0
             for activity in activites:
+                shell.write("logcat ContextImplcheckPermission:E IntentExtra:E AndroidRuntime:E *:S")#20160607
+                logs = read_shell(shell, 1)#20160607
+
                 count = count + 1
                 self.stdout.write("  No.%d: %s\n" % (count, activity.name))
 
                 time.sleep(1)
-                
                 # Serializable added 20151113 
                 start_components = self.new("com.mwr.dz.apksec.StartComponents")
                 start_components.startcomponent(arguments.package, activity.name, START_ACTIVITY, self.getContext())
+
+                shell.write("logcat -d")#20160607
                 logs = read_shell(shell, 1)
                 logs = cutoff_system_print(logs)
                 activity_detect_result[activity.name] = logs#20160317
-                self.stdout.write("+++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (activity.name, logs))
+                self.stdout.write("++++++++++++++++++++++++++++++++++++++++LOGS of %s++++++++++++++++++++++++++++++++++++++++\n%s\n" % (activity.name, logs))
                 self.stdout.flush() #added 20151116
+                shell.write("logcat -c")#20160612
                 
             #20160317    
             activity_detect_result = str(activity_detect_result)
@@ -64,11 +69,8 @@ class Detect(Module, common.Filters, common.PackageManager, common.IntentFilter)
         else:
             self.stdout.write("package could not be None!\n")
 
-        #logs = read_shell(shell, 1)
-        #self.stdout.write("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~logs after activity detecting:\n%s" % logs)
-        
-        close_logcat(shell)
-        #self.stdout.write("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~logs Finished!!!!\n")
+        shell.close()
+
 
     def __get_activities(self, package):
         exported_activities = self.match_filter(package.activities, 'exported', True)
